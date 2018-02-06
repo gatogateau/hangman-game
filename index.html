@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Let's Play Hangman!</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap.css"/>
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <script src="assets/javascript/game.js"></script>
+
+</head> 
+<body>
+    <H1>A Nuevo game of Hangman</H1>
+
+    <div class="container">
+
+    
+        <div class="row">
+            <div id="drawhangman" class="col-sm-4">
+                <img src="assets/images/man.png" alt="draw hangman" height=200pt width=200pt>
+                <!-- would like to make a gif that changes with every wrong move -->
+            </div>
+
+            <div id="compWord" class="col-sm-4">
+                <p>Computer choice for Hangman:  <span id="gameWord"</span></p>
+
+                
+                <div class="row">
+                
+            
+
+                    <div id="guessLetter" class="col-sm-4">
+                        Guess a <span>Letter</span>
+                    </div>
+            
+                    <div id="inputKeyUp" class="col-sm-4">  <input type="text" id="fname" onkeyup="myFunction()">
+                        <br>
+                        <br>
+                        <p> you've entered <span id="demo"></span></p>
+                        <!-- <input type="text" size="5" onkeydown= "mySecondFunction(event)"> -->
+                    </div>
+                 </div>       
+            </div>
+        </div>
+    </div>
+    <body>
+
+        <div class="container">
+            <div class="row">
+                <div class = "col-sm-6">
+
+                
+                    <p><button onclick="compWord ()" type="button" class="btn btn-primary" id="playHang">Start a game</></p>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <p>You Chose:
+                        <!-- why won't this demo link to the onkeyup? -->
+                            <p> you've entered <span id="demo"></span> <span id="playerChoice"></span> </p>
+                    </p>
+                    <!-- <p>Computer chose: -->
+                        <!-- <span id="pcChoice"></span> -->
+                    <p>Computer chose this word: 
+                        <span id="gameWord"></span>
+                    </p>        
+                </div>        
+                
+                <div class="col-sm-4">
+                <p>Wins:
+                    <span id="win"></span>
+                </p>
+                <p>Losses:
+                    <span id="loss"></span>
+                </p>
+                <p>Ties:
+                    <span id="tie"></span>
+                </p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var player = ["r", "p", "s"];
+            var computer = ["r", "p", "s"];
+            var wins = 0;
+            var losses = 0;
+            var ties = 0;
+    
+            //computer entry
+            // function compChoice() {
+                // var x = Math.floor((Math.random() * computer.length));
+                // document.getElementById("pcChoice").innerHTML = computer[x];
+                // return computer[x];
+            // }
+    
+            // player entry
+    
+            document.onkeyup = function (event) {
+                if (event.key === "r" || event.key === "p" || event.key === "s") {
+                    playerChose.textContent = event.key;
+                    var pcChose = compChoice();
+                    if (event.key === "s" && pcChose === computer[1] || event.key === "r" && pcChose === computer[2] || event.key === "p" && pcChose === computer[0]) {
+                        wins++;
+                        console.log("Wins: " + wins);
+                        document.getElementById("win").innerHTML = wins;
+                    } else if (event.key === "s" && pcChose === computer[0] || event.key === "r" && pcChose === computer[1] || event.key === "p" && pcChose === computer[2]) {
+                        losses++;
+                        console.log("Losses: " + losses);
+                        document.getElementById("loss").innerHTML = losses;
+                    } else if (event.key === "s" && pcChose === computer[2] || event.key === "r" && pcChose === computer[0] || event.key === "p" && pcChose === computer[1]) {
+                        ties++;
+                        console.log("Ties: " + ties);
+                        document.getElementById("tie").innerHTML = ties;
+                    }
+                } else {
+                    playerChose.textContent = "Please choose r, p, or s.";
+                }
+            }
+    
+        </script>
+    </body>
+    
+    </html>
+
+
+    <script>
+        function myFunction() {
+            var x = 
+                document.getElementById("fname").value;
+                document.getElementById("demo").innerHTML = x;
+        }
+
+        // function mySecondFunction (event) {
+            // var x=event.key;
+            // document.getElementById("demo").innerHTML ="the pressed Key was: " + x;
+        // }
+    </script>
+    
+</body>
+</html>
